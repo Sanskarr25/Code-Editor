@@ -15,183 +15,17 @@ const timeValue = document.getElementById('time-value');
 
 // Sample code for different languages
 const samples = {
-    javascript: `// Welcome to Code Editor Pro! 🚀
-// Try out these examples or write your own code
+    c: `Type your C code here`,
 
-// Basic console output
-console.log('Hello, World! 👋');
+    cpp: `// Type your C++ code here`,
 
-// Variables and functions
-const greetUser = (name) => {
-    return \`Welcome, \${name}! Ready to code? ✨\`;
-};
+    java: `// Type your Java code here`,
 
-// Array operations
-const languages = ['JavaScript', 'Python', 'HTML', 'CSS'];
-console.log('Supported languages:', languages.join(', '));
-
-// Object manipulation
-const codeStats = {
-    linesWritten: 42,
-    bugsFixed: 7,
-    coffeeConsumed: '∞'
-};
-
-console.log('Today\\'s coding stats:', codeStats);
-
-// Return a success message
-return greetUser('Developer');`,
+    javascript: `// Type your JavaScript code here`,
     
-    python: `# Python code (simulated - runs as JavaScript)
-# Note: This is a demo. Python syntax shown but executes as JS
-
-# Python-style printing (mapped to console.log)
-print = console.log;
-
-# Variables and data structures
-name = "Python Developer";
-languages = ["Python", "JavaScript", "Java", "C++"];
-
-print("Hello from Python! 🐍");
-print(f"Welcome, {name}!");
-print("Available languages:", ", ".join(languages));
-
-# Dictionary (object in JS)
-stats = {
-    "version": "3.9",
-    "paradigm": "multi-paradigm",
-    "typing": "dynamic"
-};
-
-print("Python stats:", JSON.stringify(stats, null, 2));
-
-return "Python simulation complete! 🎉";`,
-    
-    html: `// HTML code preview
-// This shows how HTML structure looks
-
-const createHTML = () => {
-    const html = \`
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>My Awesome Page</title>
-    <style>
-        body { font-family: Arial, sans-serif; }
-        .header { color: #333; text-align: center; }
-        .content { margin: 20px; }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <h1>Welcome to My Page! 🌟</h1>
-    </div>
-    <div class="content">
-        <p>This is a sample HTML structure.</p>
-        <ul>
-            <li>Modern design</li>
-            <li>Responsive layout</li>
-            <li>Clean code</li>
-        </ul>
-    </div>
-</body>
-</html>
-    \`;
-    
-    console.log('HTML Structure:');
-    console.log(html);
-    return 'HTML template created successfully! 🎨';
-};
-
-return createHTML();`,
-    
-    css: `// CSS code preview
-// This shows modern CSS styling techniques
-
-const modernCSS = \`
-/* Modern CSS with Grid and Flexbox */
-:root {
-    --primary-color: #333;
-    --secondary-color: #f8f9fa;
-    --accent-color: #007bff;
-    --border-radius: 8px;
-}
-
-.container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.card {
-    background: var(--secondary-color);
-    border-radius: var(--border-radius);
-    padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .container {
-        grid-template-columns: 1fr;
-        padding: 1rem;
-    }
-}
-\`;
-
-console.log('Modern CSS Styles:');
-console.log(modernCSS);
-
-return 'CSS styles generated! Modern, responsive, and beautiful! 💅';`,
-    
-    json: `// JSON data example
-// Working with JSON in JavaScript
-
-const sampleData = {
-    "app": {
-        "name": "Code Editor Pro",
-        "version": "2.0.0",
-        "author": "Developer",
-        "features": [
-            "Syntax highlighting",
-            "Multi-language support",
-            "Responsive design",
-            "Modern UI",
-            "Real-time execution"
-        ]
-    },
-    "settings": {
-        "theme": "modern",
-        "fontSize": 14,
-        "lineNumbers": true,
-        "autoSave": false
-    },
-    "stats": {
-        "totalUsers": 1337,
-        "codeExecutions": 9001,
-        "satisfaction": "100%"
-    }
-};
-
-// Pretty print JSON
-console.log('📊 Application Data:');
-console.log(JSON.stringify(sampleData, null, 2));
-
-// Working with the data
-console.log(\`\\n🚀 App: \${sampleData.app.name} v\${sampleData.app.version}\`);
-console.log(\`⭐ Features: \${sampleData.app.features.length} amazing features!\`);
-console.log(\`👥 Users: \${sampleData.stats.totalUsers} developers\`);
-
-return 'JSON data processed successfully! 📋✨';`
+    python: `#Type your Python code here`,
+      
+    typescript: `// Type your TypeScript code here`
 };
 
 // Console capture
@@ -316,12 +150,8 @@ function handleLanguageChange() {
     outputSection.innerHTML = `
         <div class="welcome-message">
             <i class="fas fa-code"></i>
-            <h3>${selectedLanguage.charAt(0).toUpperCase() + selectedLanguage.slice(1)} Template Loaded!</h3>
+            <h3>Run ${selectedLanguage.charAt(0).toUpperCase() + selectedLanguage.slice(1)} without any worries</h3>
             <p>Click <strong>"Run Code"</strong> to execute</p>
-            <div class="shortcuts">
-                <span><kbd>Ctrl</kbd> + <kbd>Enter</kbd> - Run Code</span>
-                <span><kbd>Ctrl</kbd> + <kbd>K</kbd> - Clear</span>
-            </div>
         </div>
     `;
     
