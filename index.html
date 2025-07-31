@@ -10,14 +10,8 @@
             rel="stylesheet">
     </head>
     <body>
-        <div class="background-decoration">
-            <div class="floating-circle circle-1"></div>
-            <div class="floating-circle circle-2"></div>
-            <div class="floating-circle circle-3"></div>
-        </div>
-
         <div class="container">
-            <div class="header">
+            <!-- <div class="header">
                 <div class="logo-section">
                     <i class="fas fa-code logo-icon"></i>
                     <div class="title-group">
@@ -40,24 +34,25 @@
                         <span>Modern</span>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="language-bar">
                 <div class="language-selector">
                     <i class="fas fa-layer-group selector-icon"></i>
                     <label for="language">Language:</label>
                     <select id="language">
+                        <option value="c">C</option>
+                        <option value="cpp">C++</option>
+                        <option value="java">Java</option>
                         <option value="javascript">JavaScript</option>
                         <option value="python">Python</option>
-                        <option value="html">HTML</option>
-                        <option value="css">CSS</option>
-                        <option value="json">JSON</option>
+                        <option value="typescript">Typescript</option>
                     </select>
                 </div>
 
                 <div class="language-info">
                     <i class="fas fa-info-circle"></i>
-                    <span>Only JavaScript is executable</span>
+                    <span>Only JavaScript is executable for now</span>
                 </div>
             </div>
 
@@ -118,13 +113,7 @@ return 'Ready to code! ✨';"></textarea>
                                 <i class="fas fa-rocket"></i>
                                 <h3>Welcome to Code Editor Pro!</h3>
                                 <p>Click <strong>"Run Code"</strong> to execute
-                                    your JavaScript</p>
-                                <div class="shortcuts">
-                                    <span><kbd>Ctrl</kbd> + <kbd>Enter</kbd> -
-                                        Run Code</span>
-                                    <span><kbd>Ctrl</kbd> + <kbd>K</kbd> -
-                                        Clear</span>
-                                </div>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -172,7 +161,6 @@ return 'Ready to code! ✨';"></textarea>
                 </div>
             </div>
         </div>
-
         <script src="script.js"></script>
     </body>
 </html>
