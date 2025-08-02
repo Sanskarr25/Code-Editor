@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Code Editor Pro</title>
+        <link href="/static/css/styles.css" rel="stylesheet">
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+
+            <div class="language-bar">
+                <div class="language-selector">
+                    <i class="fas fa-layer-group selector-icon"></i>
+                    <label for="language">Language:</label>
+                    <select id="language">
+                        <option value="c">C</option>
+                        <option value="cpp">C++</option>
+                        <option value="java">Java</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="python">Python</option>
+                        <option value="typescript">Typescript</option>
+                    </select>
+                </div>
+
+                <div class="language-info">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Only JavaScript is executable for now</span>
+                </div>
+            </div>
+
+            <div class="editor-container">
+                <div class="editor-grid">
+                    <div class="panel code-panel">
+                        <div class="panel-header">
+                            <div class="header-content">
+                                <i class="fas fa-edit"></i>
+                                <span>Code Editor</span>
+                            </div>
+                            <div class="header-actions">
+                                <button class="action-btn" id="copy-output-btn"
+                                    title="Copy Code">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <button class="action-btn" id="format-btn"
+                                    title="Format Code">
+                                    <i class="fas fa-indent"></i>
+                                </button>
+                                <div class="line-counter">
+                                    <i class="fas fa-list-ol"></i>
+                                    <span id="line-count">1</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="code-wrapper">
+                            <div class="line-numbers" id="line-numbers">1</div>
+                            <textarea id="code"
+                                placeholder="// Welcome to Code Editor Pro!
+// Start typing your JavaScript code here...
+console.log('Hello, World! 🚀');
+
+// Try some examples:
+const greeting = 'Welcome to coding!';
+console.log(greeting);
+
+return 'Ready to code! ✨';"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="panel output-panel">
+                        <div class="panel-header">
+                            <div class="header-content">
+                                <i class="fas fa-terminal"></i>
+                                <span>Output Console</span>
+                            </div>
+                            <div class="header-actions">
+                                <button class="action-btn" id="copy-output-btn"
+                                    title="Copy Output">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <div class="status-indicator"
+                                    id="status-indicator">
+                                    <i class="fas fa-circle"></i>
+                                    <span>Ready</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="output-area" id="output">
+                            <div class="welcome-message">
+                                <i class="fas fa-rocket"></i>
+                                <h3>Welcome to Code Editor Pro!</h3>
+                                <p>Click <strong>"Run Code"</strong> to execute
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <div class="control-group">
+                        <button class="btn btn-primary" id="run-button">
+                            <i class="fas fa-play"></i>
+                            <span>Run Code</span>
+                        </button>
+                        <button class="btn btn-secondary" id="clear-button">
+                            <i class="fas fa-eraser"></i>
+                            <span>Clear</span>
+                        </button>
+                        <button class="btn btn-outline" id="share-button">
+                            <i class="fas fa-share-alt"></i>
+                            <span>Share</span>
+                        </button>
+                    </div>
+
+                    <div class="control-info">
+                        <div class="execution-time" id="execution-time"
+                            style="display: none;">
+                            <i class="fas fa-stopwatch"></i>
+                            <span>Executed in <span
+                                    id="time-value">0</span>ms</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="footer-content">
+                    <p>Built with <i class="fas fa-heart"></i> for
+                        developers</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i
+                                class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i
+                                class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i
+                                class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
