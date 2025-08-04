@@ -163,83 +163,23 @@ function handleLanguageChange() {
 function runCode() {
     const code = codeEditor.value.trim();
     const language = languageSelect.value;
-    
+
     if (!code) {
-        outputSection.innerHTML = `
-            <div class="welcome-message">
-                <i class="fas fa-exclamation-triangle" style="color: #ffc107;"></i>
-                <h3>No Code to Execute</h3>
-                <p>Please enter some code first!</p>
-            </div>
-        `;
-        updateStatus('No code entered', '#ffc107');
+        // Handle empty code editor
         return;
     }
 
-    // Only JavaScript can actually execute
-    if (language !== 'javascript') {
-        outputSection.innerHTML = `
-            <div class="welcome-message">
-                <i class="fas fa-info-circle" style="color: #17a2b8;"></i>
-                <h3>Language Preview Mode</h3>
-                <p>Currently only JavaScript execution is supported.<br>
-                Showing <strong>${language}</strong> code structure...</p>
-            </div>
-            <div style="background: #f8f9fa; padding: 15px; border-radius: 6px; margin-top: 15px; font-family: monospace; white-space: pre-wrap; border-left: 4px solid #17a2b8;">${code}</div>
-        `;
-        updateStatus(`${language} preview`, '#17a2b8');
-        return;
-    }
-
-    // Execute JavaScript
-    consoleOutput = [];
-    captureConsole();
-    updateStatus('Executing...', '#ffc107');
-    
-    const startTime = performance.now();
-
-    try {
-        const func = new Function(code);
-        const result = func();
-        
-        const endTime = performance.now();
-        const executionTimeMs = Math.round(endTime - startTime);
-        
-        restoreConsole();
-        
-        let output = '';
-        if (consoleOutput.length > 0) {
-            output += consoleOutput.join('\n') + '\n\n';
-        }
-        
-        if (result !== undefined) {
-            output += '🎯 Return: ' + String(result);
-        } else if (consoleOutput.length === 0) {
-            output = '✅ Code executed successfully (no output)';
-        }
-        
-        outputSection.innerHTML = `<div style="color: #28a745; margin-bottom: 10px;"><i class="fas fa-check-circle"></i> <strong>Execution Successful</strong></div><pre style="margin: 0; white-space: pre-wrap; font-family: inherit;">${output}</pre>`;
-        
-        updateStatus('Executed successfully', '#28a745');
-        
-        // Show execution time
-        timeValue.textContent = executionTimeMs;
-        executionTime.style.display = 'flex';
-        
-    } catch (error) {
-        restoreConsole();
-        outputSection.innerHTML = `
-            <div style="color: #dc3545; margin-bottom: 15px;">
-                <i class="fas fa-exclamation-circle"></i> <strong>Execution Error</strong>
-            </div>
-            <div style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 6px; border-left: 4px solid #dc3545;">
-                <strong>Error:</strong> ${error.message}
-            </div>
-        `;
-        updateStatus('Execution failed', '#dc3545');
-        executionTime.style.display = 'none';
+    if (language === 'python') {
+        runPythonCode();  // <-- Calls Python API
+    } else if (language === 'javascript') {
+        executeJavaScript(code);  // <-- Execute JS locally
+    } else {
+        showPreviewMode(language, code);  // <-- C, C++, Java, TypeScript → Preview mode
     }
 }
+
+document.getElementById('run-button').addEventListener('click', runCode);
+
 
 // Clear code only
 function clearCode() {
@@ -298,3 +238,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Sync line numbers scroll with code editor
     lineNumbers.scrollTop = codeEditor.scrollTop;
 });
+
+async function runPythonCode() {
+    const code = document.getElementById("code").value;
+
+    const response = await fetch('/execute/python', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ code: code })  // <-- Sending as JSON
+    });
+
+    const result = await response.json();
+
+    console.log(result);
+
+    outputSection.innerText = result.error ? result.error : result.output;
+}
