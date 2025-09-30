@@ -12,17 +12,6 @@ app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
-jdoodle_URL = "https://api.jdoodle.com/v1/execute"
-client_id = "fdb16b22f921e39373992ea263d64b1b"
-client_secret = "ea731c037548dd229121b626dafac1669b1f27d4e887208f64110f94f9a47c97"
-
-class CodeExecutionRequest(BaseModel):
-    script: str
-    language: str
-    version_index: str = "0"
-    stdin: str = ""
-
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  
@@ -31,8 +20,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-#----Routes-----
+#---JDoodle API Info----
+jdoodle_URL = "https://api.jdoodle.com/v1/execute"
+client_id = "fdb16b22f921e39373992ea263d64b1b"
+client_secret = "ea731c037548dd229121b626dafac1669b1f27d4e887208f64110f94f9a47c97"
 
+
+class CodeExecutionRequest(BaseModel):
+    script: str
+    language: str
+    version_index: str = "0"
+    stdin: str = ""
+
+#----Routes-----
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
@@ -54,3 +54,17 @@ async def execute_code(request : CodeExecutionRequest):
                 return response.json()
             except httpx.HTTPError as e:
                 raise HTTPException(status_code=500, detail=f"JDoodle API error: {str(e)}")
+            
+@app.get("/languages")
+async def get_supported_languages():
+    languages = [
+        {"name": "Java", "value": "java", "version": "0"},
+        {"name": "Python3", "value": "python3", "version": "0"},
+        {"name": "C", "value": "c", "version": "0"},
+        {"name": "C++", "value": "cpp", "version": "0"},
+        {"name": "JavaScript", "value": "nodejs", "version": "0"},
+        {"name": "Go", "value": "go", "version": "0"},
+        {"name": "Rust", "value": "rust", "version": "0"},
+        # Add more languages as needed
+    ]
+    return languages          

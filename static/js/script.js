@@ -256,3 +256,27 @@ async function runPythonCode() {
 
     outputSection.innerText = result.error ? result.error : result.output;
 }
+
+
+class CodeEditor {
+    constructor() {
+        this.currentLanguage = 'javascript'; // Default to JavaScript
+        this.consoleOutput = [];
+        this.originalConsole = console.log;
+        this.setupEventListeners();
+        this.loadInitialCode();
+    }
+
+    getEditorContent() {
+        return document.getElementById('code').value; // ← YOUR textarea ID
+    }
+
+        // GET STDIN CONTENT - You might add an input field for this later
+    getStdinContent() {
+        // For now, return empty string. You can add an input field later
+        return "";
+    }
+
+    
+
+}
