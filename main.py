@@ -58,13 +58,6 @@ async def execute_code(request : CodeExecutionRequest):
 @app.get("/languages")
 async def get_supported_languages():
     languages = [
-        {"name": "Java", "value": "java", "version": "0"},
-        {"name": "Python3", "value": "python3", "version": "0"},
-        {"name": "C", "value": "c", "version": "0"},
-        {"name": "C++", "value": "cpp", "version": "0"},
-        {"name": "JavaScript", "value": "nodejs", "version": "0"},
-        {"name": "Go", "value": "go", "version": "0"},
-        {"name": "Rust", "value": "rust", "version": "0"},
-        # Add more languages as needed
+        {"name": "Python3", "value": "python3", "version": "0"}
     ]
     return languages          

@@ -15,17 +15,8 @@ const timeValue = document.getElementById('time-value');
 
 // Sample code for different languages
 const samples = {
-    c: `Type your C code here`,
-
-    cpp: `// Type your C++ code here`,
-
-    java: `// Type your Java code here`,
-
-    javascript: `// Type your JavaScript code here`,
-    
     python: `#Type your Python code here`,
-      
-    typescript: `// Type your TypeScript code here`
+    
 };
 
 // Console capture
@@ -260,7 +251,7 @@ async function runPythonCode() {
 
 class CodeEditor {
     constructor() {
-        this.currentLanguage = 'javascript'; // Default to JavaScript
+        this.currentLanguage = 'Python'; // Default to Python
         this.consoleOutput = [];
         this.originalConsole = console.log;
         this.setupEventListeners();
