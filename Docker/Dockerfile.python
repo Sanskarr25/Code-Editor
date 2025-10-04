@@ -1,0 +1,29 @@
+# Start from official Python image (slim version = smaller size)
+FROM python:3.11-slim
+   
+   # Create a non-root user for security
+   # This prevents malicious code from having root access
+RUN useradd -m -u 1000 coderunner && \
+       mkdir -p /app /tmp/code && \
+       chown -R coderunner:coderunner /app /tmp/code
+ 
+   # Set working directory inside container
+WORKDIR /app
+ 
+   # Install common Python packages that users might need
+   # You can add more packages here as needed
+RUN pip install --no-cache-dir \
+       numpy \
+       pandas \
+       matplotlib \
+       requests
+       
+   # Switch to non-root user
+USER coderunner
+   
+   # Environment variables
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+   
+   # Default command (will be overridden when we run the container)
+CMD ["python3"]
