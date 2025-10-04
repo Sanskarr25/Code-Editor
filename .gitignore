@@ -2,3 +2,5 @@
 /Testing
 /__pycache__
 user_code.py
+test_docker.py
+test_executor.py
